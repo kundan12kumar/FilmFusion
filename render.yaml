@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: filmfusion-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_Po6UaMcSHr2l@ep-fancy-shadow-a1n5h65a-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: JWT_SECRET
+        value: your_strong_secret_key_for_filmfusion_2024
+      - key: TMDB_API_KEY
+        value: d0288711dbe8df028c10d016c4aca549
+      - key: TMDB_BASE_URL
+        value: https://api.themoviedb.org/3
+      - key: GOOGLE_CLIENT_ID
+        value: 1059821168279-l3f82nmslol1brmlr9co2l4gph4rk3oe.apps.googleusercontent.com
+      - key: GOOGLE_CLIENT_SECRET
+        value: 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
+      - key: CORS_ORIGIN
+        value: http://localhost:3000,https://filmfusion-live.netlify.app

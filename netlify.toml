@@ -1,0 +1,52 @@
+[build]
+  # Build command
+  command = "npm ci && npm run build"
+
+  # Directory to publish (contains the production build)
+  publish = "build"
+
+  # Base directory for the build (where package.json is located)
+  base = "client"
+
+[build.environment]
+  # Node.js version
+  NODE_VERSION = "18"
+
+  # Build optimization
+  GENERATE_SOURCEMAP = "false"
+
+  # CI environment
+  CI = "true"
+
+  # Treat warnings as warnings, not errors
+  CI_TREAT_WARNINGS_AS_ERRORS = "false"
+
+# Redirect rules for React Router (SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Environment-specific settings
+[context.production]
+  command = "npm run build"
+
+[context.deploy-preview]
+  command = "npm run build"
+
+[context.branch-deploy]
+  command = "npm run build"
