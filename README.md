@@ -1,5 +1,4 @@
 # FilmFusion 🎬 
-Check it out: https://filmfusion-live.netlify.app/
 
 A modern movie and TV series discovery platform built with React and Node.js. Discover, rate, and manage your favorite movies and shows with a beautiful, responsive interface.
 
